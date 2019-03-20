@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 
-for f in ~/dotfiles/*
-do
-  ln -s "$f" "$HOME/.${f##*/}"
-done
+dotfiles_dir=~/dotfiles
+
+#=======================================
+# Delete existing dot files and folders
+#=======================================
+sudo rm -rf ~/.vim > /dev/null 2>&1
+sudo rm -rf ~/.vimrc > /dev/null 2>&1
+
+#=======================================
+# Create symlinks in the home folder
+#=======================================
+ln -sf $dotfiles_dir/vim ~/.vim
+ln -sf $dotfiles_dir/vimrc ~/.vimrc
